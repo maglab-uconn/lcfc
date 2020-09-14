@@ -161,11 +161,16 @@ df.goodSubj_resp_byBias_summary <- na.exclude(summarySE(df.goodSubj,
 
 ggplot(df.goodSubj_resp_byBias_summary) + 
   aes(step_scaled, front_response, color = context_bias) +
-  geom_point() + 
-  geom_line() +   
-  geom_errorbar(aes(ymin=front_response-ci, ymax = front_response+ci, width = 0.03)) + 
-  labs(x = "Step (scaled)", y = "Proportion front-PoA response", color = "Implied \nPoA for last \nsegment of \ncontext item")
-ggsave("lcfc_replication_n40_continua.png", width = 25, height = 20, units = "cm")
+  geom_point(size = 3) + 
+  geom_line(size = 1) +   
+  geom_errorbar(size = 1, aes(ymin=front_response-ci, ymax = front_response+ci, width = 0.06)) + 
+  labs(x = "Step", y = 'Proportion "Front PoA" response', color = "Implied \nPoA for last \nsegment of \ncontext item") + 
+  annotate(geom = "text", x = -1.75, y = -0.1, angle = 0, label = 'Front PoA', size = 6) +
+  annotate(geom = "text", x = 1.75, y = -0.1, angle = 0, label = 'Back PoA', size = 6) + 
+  annotate(geom = "text", x = 0, y = 0, angle = 0, label = 'N = 40', size = 8) + 
+  theme(legend.position = c(0.8,0.8), legend.title.align = 0, legend.text.align = 1,
+        panel.grid = element_blank())
+ggsave("lcfc_replication_n40_continua.png", width = 20, height = 20, units = "cm")
 
 
 # (2) Break down by context contrast and target contrast

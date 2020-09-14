@@ -283,3 +283,55 @@ ggplot(df.goodSubj_resp_byContrasts_byBias_summary) +
   geom_errorbar(aes(ymin=front_response-ci, ymax = front_response+ci, width = 0.03)) + 
   labs(x = "Step (scaled)", y = "Proportion front-PoA response", color = "PoA for last \nsegment of \ncontext item")
 ggsave("lcfc_pilot_cfc_n16good_continua_byContrast.png", width = 25, height = 25, units = "cm")
+
+# Look at RT data ----
+
+df.RT <- na.exclude(summarySE(df, 
+                                        measurevar = "reaction_time", 
+                                        groupvars = c("step_scaled"), 
+                                        na.rm = TRUE))
+ggplot(df.RT) + 
+  aes(step_scaled, reaction_time) +
+  geom_point() + 
+  geom_line() +   
+  geom_errorbar(aes(ymin=reaction_time-ci, ymax = reaction_time+ci, width = 0.03)) + 
+  labs(x = "Step (scaled)", y = "Response time")
+
+
+df.RT.byContext <- na.exclude(summarySE(df, 
+                              measurevar = "reaction_time", 
+                              groupvars = c("context_bias","step_scaled"), 
+                              na.rm = TRUE))
+ggplot(df.RT.byContext) + 
+  aes(step_scaled, reaction_time, color = context_bias) +
+  geom_point() + 
+  geom_line() +   
+  geom_errorbar(aes(ymin=reaction_time-se, ymax = reaction_time+se, width = 0.03)) + 
+  labs(x = "Step (scaled)", y = "Response time", color = "PoA for last \nsegment of \ncontext item")
+
+# Looking only at items we want to use for LCFC experiment
+df.selected <- droplevels(subset(df, context == "pocketful" | context == "questionnaire" | context == "isolate" | context == "maniac"))
+df.selected <- droplevels(subset(df.selected, target_contrast == "[s/∫]____"))
+
+df.selected.RT <- na.exclude(summarySE(df.selected, 
+                                       measurevar = "reaction_time", 
+                                       groupvars = c("step_scaled"), 
+                                       na.rm = TRUE))
+ggplot(df.selected.RT) + 
+  aes(step_scaled, reaction_time) +
+  geom_point() + 
+  geom_line() +   
+  geom_errorbar(aes(ymin=reaction_time-ci, ymax = reaction_time+ci, width = 0.03)) + 
+  labs(x = "Step (scaled)", y = "Response time")
+
+df.selected.RT.byContext <- na.exclude(summarySE(df.selected, 
+                                       measurevar = "reaction_time", 
+                                       groupvars = c("context_bias","step_scaled"), 
+                                       na.rm = TRUE))
+ggplot(df.selected.RT.byContext) + 
+  aes(step_scaled, reaction_time, color = context_bias) +
+  geom_point() + 
+  geom_line() +   
+  geom_errorbar(aes(ymin=reaction_time-se, ymax = reaction_time+se, width = 0.03)) + 
+  labs(x = "Step (scaled)", y = "Response time", color = "PoA for last \nsegment of \ncontext item")
+
