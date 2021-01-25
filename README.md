@@ -2,6 +2,8 @@
 
 This repository contains files corresponding to the manuscript, "Robust lexically-mediated compensation for coarticulation: Christmash time is here again."
 
+The pre-registration plan for this study is available at https://osf.io/567dq.
+
 The "stimuli" folder contains the .wav/.mp3 files used for each of the three pilot studies as well as those that survived piloting and were used in the final experiment.
 
 The "analysis" folder contains files data, R scripts, and plots:
