@@ -1,6 +1,6 @@
 # lcfc
 
-This repository contains files corresponding to the manuscript, "Robust lexically-mediated compensation for coarticulation: Christmash time is here again."
+This repository contains files corresponding to the manuscript, "Robust lexically-mediated compensation for coarticulation: Christmash time is here again," currently in press in Cognitive Science.
 
 The pre-registration plan for this study is available at https://osf.io/567dq.
 
