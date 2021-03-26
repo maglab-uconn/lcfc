@@ -6,8 +6,12 @@ At the command line, just enter:
 ./ngrammer_simpler.pl < fkwp_pro_simple.csv > tp_out.txt
 
 It reads in the .csv file and outputs that text file. The CSV file is
-orthographic forms, frequencies, and phonological forms from Francis &
-Kucera.
+orthographic forms, frequencies, and phonological forms. Frequencies 
+and phonological forms were obtained from the SUBTLEX subtitle corpus 
+(Brysbaert & New, 2009) cross-referenced with the Kučera and Francis 
+(1982) database. Pronunciations not available in these databases 
+were filled in from the CMU Pronouncing Dictionary (CMU Computer 
+Science, 2020).
 
 The output is tab-separated values by default. Turn on CSV output like
 this:
@@ -41,7 +45,7 @@ COUNT	12	zoIlEktrIsIt	1	0.00018737
 
 Since cmax is set to 12, it goes out to finding 12-grams. There are
 902 that occur in this lexicon. The examples you see here also suggest
-caution about the F&K pronunciations. The 4 patterns here are
+caution about the specific pronunciations used. The 4 patterns here are
 "humanitarian", "humiliatingly", "unidirection", and the last one is
 part of the very arcane and rare word, "piezoelectricity:
 (/pYizoIlEktrIsIti/). So in the dialect of the pronunciations, the /h/
