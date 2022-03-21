@@ -7,7 +7,6 @@ library(here)
 library(bit64)
 
 # Data manipulation.
-library(data.table)
 library(Rmisc)
 library(dplyr)
 library(stringr)
@@ -29,20 +28,10 @@ theme_set(theme_bw(base_size = 20))
 
 # Format the data ####
 # Read in files
-file_names <- list.files(path = "./experiment_lcfc", pattern = "*.csv", all.files = FALSE,
-                         full.names = TRUE, recursive = FALSE)
+i_am("lcfc_experiment_analysis.R")
 
-# Create data frame
-df <- data.frame()
-
-# Loop to create combined dataframe
-for (i in file_names) {
-  data <- fread(i, header = TRUE, sep = ",")
-  df <- rbind(df, data)
-}
-
-# Clean up environment
-rm(data); rm(file_names); rm(i) 
+df <- list.files(here("experiment_lcfc"),full.names = T,pattern = "*.csv") %>% 
+  map_df(~read_csv(.,col_types = list(`Reaction Time` = col_character())))
 
 # Make variable names syntactically valid - everything is machine readable now
 df <- clean_names(df)
